@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("user", JSON.stringify(data));
       window.location.href = "/";
     } else {
-      errorText.innerText = data;
-    }
+      errorText.innerText = data.error ? data.error : "Benutzername oder Passwort ungültig.";
+    }    
   });
 });

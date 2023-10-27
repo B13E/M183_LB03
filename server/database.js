@@ -1,4 +1,5 @@
 const sqlite3 = require("sqlite3").verbose();
+const bcrypt = require("bcrypt");
 
 const tweetsTableExists =
   "SELECT name FROM sqlite_master WHERE type='table' AND name='tweets'";
@@ -16,9 +17,9 @@ const createUsersTable = `CREATE TABLE users (
   password TEXT
 )`;
 const seedUsersTable = `INSERT INTO users (username, password) VALUES
-  ('switzerchees', '123456'),
-  ('john', '123456'),
-  ('jane', '123456')
+  ('switzerchees', '$2b$10$OjYJ88r56oBxG2kGRfclo.QPw.MHjxrIVsRyJ9FdjEo2h/dSF8CjG'), /* Hash for '123456' */
+  ('john', '$2b$10$OjYJ88r56oBxG2kGRfclo.QPw.MHjxrIVsRyJ9FdjEo2h/dSF8CjG'),
+  ('jane', '$2b$10$OjYJ88r56oBxG2kGRfclo.QPw.MHjxrIVsRyJ9FdjEo2h/dSF8CjG')
 `;
 
 const initializeDatabase = async () => {
