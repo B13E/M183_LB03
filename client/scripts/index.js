@@ -21,17 +21,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="flex flex-col grow">
                 <div class="flex flex-col gap-2">
                     <div class="flex justify-between text-gray-200">
-                    <h3 class="font-semibold">${tweet.username}</h3>
+                    <h3 class="font-semibold">${escapeHtml(tweet.username)}</h3>
                     <p class="text-sm">${date}</p>
                     </div>
                 </div>
-                <p>${tweet.text}</p>
+                <p>${escapeHtml(tweet.text)}</p>
                 </div>
             </div>
         </div>
       `;
     return tweetElement;
   };
+
+  function escapeHtml(unsafe) {
+    return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+}
 
   const getFeed = async () => {
     const query = "SELECT * FROM tweets ORDER BY id DESC";

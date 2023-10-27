@@ -1,6 +1,6 @@
 const { initializeDatabase, queryDB, insertDB } = require("./database");
 const jwt = require("jsonwebtoken");
-const pino = require('pino-http')(); // Hier verwenden wir pino-http zur Protokollierung
+const pino = require('pino-http')(); // Hier verwenden wir pino-http zur Protokollierung 
 const { body, validationResult } = require("express-validator");
 const express = require('express');
 

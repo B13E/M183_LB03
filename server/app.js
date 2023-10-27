@@ -33,6 +33,14 @@ app.get("/", (req, res) => {
 // Initialize the REST api
 initializeAPI(app);
 
+app.use((err, req, res, next) => {
+  // Loggen Sie den Fehler mit pino:
+  req.log.error(err.message); 
+
+  // Senden Sie eine allgemeine Fehlermeldung an den Client:
+  res.status(500).json({ error: "Ein interner Serverfehler ist aufgetreten. Bitte versuchen Sie es später erneut." });
+});
+
 //start the web server
 const serverPort = process.env.PORT || 3000;
 server.listen(serverPort, () => {
